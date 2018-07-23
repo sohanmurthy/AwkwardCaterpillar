@@ -29,6 +29,7 @@ void setup() {
   
   LXPattern[] patterns = {
     
+    new Spirals(lx),
     new BoringLight(lx),
     new IteratorTestPattern(lx).setEligible(false)
     
