@@ -91,16 +91,16 @@ class OscEngine implements LXLoopTask,LXParameterListener {
     addControl("/palette/cx", palette.xpos);
     addControl("/palette/cy", palette.ypos);
     
-    addControl("/beatDetect/band", kick.minBand);
-    addControl("/beatDetect/width", kick.avgBands);
-    addControl("/beatDetect/floor", kick.floor);
-    addControl("/beatDetect/thresh", kick.threshold);
-    addControl("/beatDetect/thresh2", kick.threshold);
-    addControl("/beatDetect/gain", kick.eq.gain);
-    addControl("/beatDetect/slope", kick.eq.slope);
-    addControl("/beatDetect/attack", kick.eq.attack);
-    addControl("/beatDetect/release", kick.release);
-    addControl("/beatDetect/monitor", monitorBeat);
+    //addControl("/beatDetect/band", kick.minBand);
+    //addControl("/beatDetect/width", kick.avgBands);
+    //addControl("/beatDetect/floor", kick.floor);
+    //addControl("/beatDetect/thresh", kick.threshold);
+    //addControl("/beatDetect/thresh2", kick.threshold);
+    //addControl("/beatDetect/gain", kick.eq.gain);
+    //addControl("/beatDetect/slope", kick.eq.slope);
+    //addControl("/beatDetect/attack", kick.eq.attack);
+    //addControl("/beatDetect/release", kick.release);
+    //addControl("/beatDetect/monitor", monitorBeat);
     
     addControl("/list/rotateTime", rotateTime); 
     addControl("/list/autoRotate", lx.engine.getChannel(0).autoTransitionEnabled);
@@ -112,13 +112,13 @@ class OscEngine implements LXLoopTask,LXParameterListener {
     
     addControl("/effects/white", effects.white);
     addControl("/effects/acid", effects.acid);
-    addControl("/effects/pulse", effects.beatPulse);
-    addControl("/effects/spots", effects.beatSpotLevel);
-    addControl("/effects/spotDecay", effects.beatSpotDecay);
-    addControl("/effects/spotDensity", effects.beatSpotDensity);
-    addControl("/effects/stars", effects.beatStarLevel);
-    addControl("/effects/starDecay", effects.beatStarDecay);
-    addControl("/effects/starDensity", effects.beatStarDensity);
+    //addControl("/effects/pulse", effects.beatPulse);
+    //addControl("/effects/spots", effects.beatSpotLevel);
+    //addControl("/effects/spotDecay", effects.beatSpotDecay);
+    //addControl("/effects/spotDensity", effects.beatSpotDensity);
+    //addControl("/effects/stars", effects.beatStarLevel);
+    //addControl("/effects/starDecay", effects.beatStarDecay);
+    //addControl("/effects/starDensity", effects.beatStarDensity);
     
     addControl("/effects/flash", flash.enabled);
     addControl("/effects/flashAttack", flash.attack);
@@ -136,30 +136,30 @@ class OscEngine implements LXLoopTask,LXParameterListener {
       }
     });
     
-    monitorBeat.addListener(new LXParameterListener() {
-      public void onParameterChanged(LXParameter p) {
-        if (monitorBeat.isOn()) {
-          sendOsc("/beatDetect/beat/color", "green");
-          sendOsc("/beatDetect/beatlabel/color", "green");
-          sendOsc("/beatDetect/level/color", "green");
-          sendOsc("/beatDetect/levellabel/color", "green");
-        } else {
-          sendOsc("/beatDetect/level/color", "gray");
-          sendOsc("/beatDetect/levellabel/color", "gray");
-          sendOsc("/beatDetect/beat/color", "gray");
-          sendOsc("/beatDetect/beatlabel/color", "gray");
-          sendOsc("/beatDetect/beat", 0);
-          sendOsc("/beatDetect/level", 0);
-        }
-      }
-    });
+    //monitorBeat.addListener(new LXParameterListener() {
+    //  public void onParameterChanged(LXParameter p) {
+    //    if (monitorBeat.isOn()) {
+    //      sendOsc("/beatDetect/beat/color", "green");
+    //      sendOsc("/beatDetect/beatlabel/color", "green");
+    //      sendOsc("/beatDetect/level/color", "green");
+    //      sendOsc("/beatDetect/levellabel/color", "green");
+    //    } else {
+    //      sendOsc("/beatDetect/level/color", "gray");
+    //      sendOsc("/beatDetect/levellabel/color", "gray");
+    //      sendOsc("/beatDetect/beat/color", "gray");
+    //      sendOsc("/beatDetect/beatlabel/color", "gray");
+    //      sendOsc("/beatDetect/beat", 0);
+    //      sendOsc("/beatDetect/level", 0);
+    //    }
+    //  }
+    //});
   }
 
   public void loop(double deltaMs) {
-    if (monitorBeat.isOn()) {
-      sendOsc("/beatDetect/beat", kick.getValuef());
-      sendOsc("/beatDetect/level", kick.getLevelf());
-    }
+    //if (monitorBeat.isOn()) {
+    //  sendOsc("/beatDetect/beat", kick.getValuef());
+    //  sendOsc("/beatDetect/level", kick.getLevelf());
+    //}
   }
 
   private void addControl(final String oscPattern, final LXListenableNormalizedParameter parameter) {
