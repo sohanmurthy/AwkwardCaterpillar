@@ -41,13 +41,6 @@ class UIEffects extends UIControlBucket {
     addButton(flash.enabled).setLabel("Flash").setMomentary(true);
     addKnob(effects.white).setLabel("Wht");
     addKnob(effects.acid).setLabel("Acid");
-    addKnob(effects.beatPulse).setLabel("Pulse");
-    addKnob(effects.beatSpotLevel).setLabel("SptLvl");
-    addKnob(effects.beatSpotDecay).setLabel("SptDcy");
-    addKnob(effects.beatSpotDensity).setLabel("SptDns");
-    addKnob(effects.beatStarLevel).setLabel("StrLvl");
-    addKnob(effects.beatStarDecay).setLabel("StrDcy");
-    addKnob(effects.beatStarDensity).setLabel("StrDns");
   }
 }
 

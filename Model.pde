@@ -9,8 +9,8 @@ static class Model extends LXModel {
   private static class Fixture extends LXAbstractFixture {
     
    
-    private static final int MATRIX_SIZE_X = 16;
-    private static final int MATRIX_SIZE_Y = 32;
+    private static final int MATRIX_SIZE_X = 8;
+    private static final int MATRIX_SIZE_Y = 64;
     private static final float X_SPACING = 5;
     private static final float Y_SPACING = 1.312;
     

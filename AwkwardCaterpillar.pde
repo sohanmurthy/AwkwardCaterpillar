@@ -3,7 +3,6 @@ import ddf.minim.*;
 P3LX lx;
 Palette palette;
 Model mdl;
-FrequencyGate kick;
 OscP5 osc;
 LXOutput output;
 FlashEffect flash;
@@ -23,14 +22,14 @@ void setup() {
   
   lx.engine.addComponent(palette = new Palette(lx));
   lx.engine.getChannel(0).setPalette(palette);
-  kick = lx.beatDetect();
 
   LXTransition transition = new MultiplyTransition(lx).setDuration(transitionTime);  
   
   LXPattern[] patterns = {
     
-    new Spirals(lx),
+    
     new BoringLight(lx),
+    new Spirals(lx),
     new IteratorTestPattern(lx).setEligible(false)
     
   };
@@ -55,7 +54,6 @@ void setup() {
   );
   lx.ui.addLayer(new UIChannelControl(lx.ui, lx, 4, 4));
   lx.ui.addLayer(new UIPalette(lx.ui, palette, 4, 326));
-  lx.ui.addLayer(new UIBeatDetect(lx.ui, kick, 4, 469));
   lx.ui.addLayer(new UIOutput(lx.ui, width - 144, 4));
   lx.ui.addLayer(new UIEffects(lx.ui, width - 144, 144));
   
