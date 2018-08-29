@@ -1,5 +1,25 @@
 //Defines the model
 
+/*
+
+ROOM DIMENSIONS
+
+North wall:
+112 pixels
+
+East Wall:
+117 pixels
+
+South Wall (window):
+140
+
+West Wall:
+371-256 = 115
+
+
+
+*/
+
 static class Model extends LXModel {
       
     public final East e;
@@ -45,7 +65,7 @@ static class Model extends LXModel {
 
 static class East extends LXModel {
     
-    private static final int SIZE_X = 96;
+    private static final int SIZE_X = 116;
     private static final int SIZE_Z = 1;
     
     private static final float X_SPACING = 1.34;
@@ -75,7 +95,7 @@ static class East extends LXModel {
 
 static class West extends LXModel {
     
-    private static final int SIZE_X = 96;
+    private static final int SIZE_X = 115;
     private static final int SIZE_Z = 1;
     
     private static final float X_SPACING = 1.34;
@@ -105,7 +125,7 @@ static class West extends LXModel {
 static class North extends LXModel {
     
     private static final int SIZE_X = 1;
-    private static final int SIZE_Z = 96;
+    private static final int SIZE_Z = 112;
     
     private static final float X_SPACING = 1;
     private static final float Z_SPACING = 1.34;
@@ -135,7 +155,7 @@ static class North extends LXModel {
 static class South extends LXModel {
     
     private static final int SIZE_X = 1;
-    private static final int SIZE_Z = 96;
+    private static final int SIZE_Z = 136;
     
     private static final float X_SPACING = 1;
     private static final float Z_SPACING = 1.34;

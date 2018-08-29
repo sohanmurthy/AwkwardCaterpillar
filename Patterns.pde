@@ -32,7 +32,7 @@ class GetPixel extends LXPattern {
   }
   
   public void run(double deltaMs) {
-      addColor(15, LXColor.hsb(0, 0, 100));
+      addColor(227, LXColor.hsb(0, 0, 100));
   }
    
 }
