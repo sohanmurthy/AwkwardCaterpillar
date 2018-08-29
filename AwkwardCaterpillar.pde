@@ -28,13 +28,12 @@ void setup() {
   
   LXPattern[] patterns = {
     
+    new BoringLight(lx),
+    new Interference(lx),
     new ColorSwatches(lx,96),
     new ColorSwatches(lx,32),
     new Stars(lx),
-    new GetPixel(lx),
-    new Interference(lx),
-    new BoringLight(lx), 
-    new Spirals(lx),
+    new GetPixel(lx).setEligible(false),
     new IteratorTestPattern(lx).setEligible(false)
     
   };
@@ -55,8 +54,8 @@ void setup() {
   lx.ui.addLayer(new UI3dContext(lx.ui)
     .addComponent(new UIPointCloud(lx).setPointSize(4))
     .setCenter(mdl.cx, mdl.cy, 0)
-    .setRadius(20*FEET)
-    .setPhi(PI/3)
+    .setRadius(15*FEET)
+    .setPhi(-PI/3)
   );
   lx.ui.addLayer(new UIChannelControl(lx.ui, lx, 4, 4));
   lx.ui.addLayer(new UIPalette(lx.ui, palette, 4, 326));

@@ -27,9 +27,9 @@ int[] buildPoints() {
 
 
 int[] buildPointsSimple() {
-  int pointIndices[] = new int[384];
+  int pointIndices[] = new int[500];
   int i = 0;
-  for (int pixels = 0; pixels < 384; pixels = pixels + 1) {
+  for (int pixels = 0; pixels < 500; pixels = pixels + 1) {
           pointIndices[i] = pixels;
       i++;
   }

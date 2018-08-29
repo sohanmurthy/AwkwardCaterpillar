@@ -31,9 +31,9 @@ static class Model extends LXModel {
     Fixture(){
   
       addPoints(this.n = new North());
+      addPoints(this.e = new East());
       addPoints(this.w = new West());
       addPoints(this.s = new South());
-      addPoints(this.e = new East());
     }
     
   }
@@ -106,12 +106,12 @@ static class North extends LXModel {
     
     private static final int SIZE_X = 1;
     private static final int SIZE_Z = 96;
-  
-    private static final float X_POS = 0;
-    private static final float Z_POS = 0;
     
     private static final float X_SPACING = 1;
     private static final float Z_SPACING = 1.34;
+    
+    private static final float X_POS = 0;
+    private static final float Z_POS = 0;
     
     
     North(){
