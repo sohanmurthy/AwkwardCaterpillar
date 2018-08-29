@@ -12,7 +12,8 @@ final BasicParameter transitionTime = new BasicParameter("Trans", 5000, 250, 300
 
 final float INCHES = 1;
 final float FEET = 12 * INCHES;
-final float SPACING = 8.4*INCHES;
+final int SECONDS = 1000;
+final int MINUTES = 60*SECONDS;
 
 void setup() {
   size(960, 720, P3D);
@@ -27,8 +28,8 @@ void setup() {
   
   LXPattern[] patterns = {
     
-    
-    new BoringLight(lx),
+    new GetPixel(lx),
+    new BoringLight(lx), 
     new Spirals(lx),
     new IteratorTestPattern(lx).setEligible(false)
     
@@ -50,7 +51,8 @@ void setup() {
   lx.ui.addLayer(new UI3dContext(lx.ui)
     .addComponent(new UIPointCloud(lx).setPointSize(4))
     .setCenter(mdl.cx, mdl.cy, 0)
-    .setRadius(8*FEET)
+    .setRadius(20*FEET)
+    .setPhi(PI/3)
   );
   lx.ui.addLayer(new UIChannelControl(lx.ui, lx, 4, 4));
   lx.ui.addLayer(new UIPalette(lx.ui, palette, 4, 326));

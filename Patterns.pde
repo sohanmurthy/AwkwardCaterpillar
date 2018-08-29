@@ -12,6 +12,19 @@ class BoringLight extends LXPattern {
    
 }
 
+class GetPixel extends LXPattern {
+  
+    GetPixel(LX lx) {
+    super(lx);
+  }
+  
+  public void run(double deltaMs) {
+      addColor(18, LXColor.hsb(0, 0, 100));
+  }
+   
+}
+
+
 
 class Spirals extends LXPattern {
   class Wave extends LXLayer {
