@@ -28,7 +28,11 @@ void setup() {
   
   LXPattern[] patterns = {
     
+    new ColorSwatches(lx,96),
+    new ColorSwatches(lx,32),
+    new Stars(lx),
     new GetPixel(lx),
+    new Interference(lx),
     new BoringLight(lx), 
     new Spirals(lx),
     new IteratorTestPattern(lx).setEligible(false)

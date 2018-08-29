@@ -1,49 +1,60 @@
 //Defines the model
 
 static class Model extends LXModel {
-  
-    public final EastWest eW;
-    public final NorthSouth nS;
+      
+    public final East e;
+    public final West w;
+    public final North n;
+    public final South s;
 
   
   Model() {
     super(new Fixture());
     Fixture f = (Fixture) this.fixtures.get(0);
-    this.nS = f.nS;
-    this.eW = f.eW;
+
+    this.e = f.e;
+    this.w = f.w;
+    this.n = f.n;
+    this.s = f.s;
 
   }
   
   private static class Fixture extends LXAbstractFixture {
     
     
-    private final EastWest eW;
-    private final NorthSouth nS;
+    private final East e;
+    private final West w;
+    private final North n;
+    private final South s;
 
     
     Fixture(){
-      addPoints(this.eW = new EastWest());
-      addPoints(this.nS = new NorthSouth());
-
+  
+      addPoints(this.n = new North());
+      addPoints(this.w = new West());
+      addPoints(this.s = new South());
+      addPoints(this.e = new East());
     }
     
   }
   
 }
 
-static class EastWest extends LXModel {
-    
-    private static final float X_POS = 1.34;
-    private static final int Z_POS = 0;
+
+
+
+static class East extends LXModel {
     
     private static final int SIZE_X = 96;
-    private static final int SIZE_Z = 2;
+    private static final int SIZE_Z = 1;
     
     private static final float X_SPACING = 1.34;
-    private static final int Z_SPACING = 11*12;
+    private static final int Z_SPACING = 1;
     
+    private static final float X_POS = 1.34;
+    private static final float Z_POS = (X_SPACING*SIZE_X);
     
-    EastWest(){
+    East(){
      super(new Fixture()); 
     }
     
@@ -61,20 +72,78 @@ static class EastWest extends LXModel {
 }
 
 
-static class NorthSouth extends LXModel {
+
+static class West extends LXModel {
     
+    private static final int SIZE_X = 96;
+    private static final int SIZE_Z = 1;
     
-    private static final int X_POS = 0;
-    private static final int Z_POS = 0;
+    private static final float X_SPACING = 1.34;
+    private static final int Z_SPACING = 1;
+      
+    private static final float X_POS = 1.34;
+    private static final float Z_POS = -X_SPACING;
     
-    private static final int SIZE_X = 2;
+    West(){
+     super(new Fixture()); 
+    }
+    
+    private static class Fixture extends LXAbstractFixture {
+      Fixture(){
+      for (int x = 0; x < SIZE_X; ++x) {
+          for (int z = 0; z < SIZE_Z; ++z){
+            // Adds points to the fixture
+            addPoint(new LXPoint(X_POS+x*X_SPACING, Z_POS+z*Z_SPACING));
+          } 
+        
+      }
+    }
+  }
+}
+
+
+static class North extends LXModel {
+    
+    private static final int SIZE_X = 1;
     private static final int SIZE_Z = 96;
+  
+    private static final float X_POS = 0;
+    private static final float Z_POS = 0;
     
-    private static final float X_SPACING = 11*12;
+    private static final float X_SPACING = 1;
     private static final float Z_SPACING = 1.34;
     
     
-    NorthSouth(){
+    North(){
+     super(new Fixture()); 
+    }
+    
+    private static class Fixture extends LXAbstractFixture {
+      Fixture(){
+      for (int x = 0; x < SIZE_X; ++x) {
+          for (int z = 0; z < SIZE_Z; ++z){
+            // Adds points to the fixture
+            addPoint(new LXPoint(X_POS+x*X_SPACING, Z_POS+z*Z_SPACING));
+          } 
+        
+      }
+    }
+  }
+}
+
+
+static class South extends LXModel {
+    
+    private static final int SIZE_X = 1;
+    private static final int SIZE_Z = 96;
+    
+    private static final float X_SPACING = 1;
+    private static final float Z_SPACING = 1.34;
+    
+    private static final float X_POS = (Z_SPACING*(SIZE_Z+1));
+    private static final float Z_POS = 0;
+    
+    South(){
      super(new Fixture()); 
     }
     

@@ -3,8 +3,8 @@
 FadecandyOutput buildOutput() {
   FadecandyOutput output = null;
   //int[] pointIndices = buildPoints();
-  //int[] pointIndices = buildPointsSimple();
-  int[] pointIndices = buildPointsManual();
+  int[] pointIndices = buildPointsSimple();
+  //int[] pointIndices = buildPointsManual();
   output = new FadecandyOutput(lx, "192.168.1.50", 7890, pointIndices);
   lx.addOutput(output);
   output.gammaCorrection.setValue(1);
