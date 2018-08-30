@@ -6,7 +6,7 @@ AWKWARD CATERPILLAR
 
 AWKWARD CATERPILLAR is an LED art installation located in a private residence in San Francisco. This program controls hundreds of individually addressable LEDs, balancing artistic expression and functional interior lighting.
 
-The system consists of a Raspberry Pi 3, [FadeCandy controller](https://www.adafruit.com/product/1689), [RGB-123 FadeCandy breakout board](http://rgb-123.com/product/fadecandy-breakout/), WS2812 LEDs, and [TouchOSC](https://hexler.net/software/touchosc) iOS app for wireless control.
+The system consists of a Raspberry Pi 3, [FadeCandy controller](https://www.adafruit.com/product/1689), [RGB-123 FadeCandy breakout board](http://rgb-123.com/product/fadecandy-breakout/), WS2812 LEDs, and [TouchOSC](https://hexler.net/software/touchosc) mobile app for wireless control.
 
 ### Installation:
 
