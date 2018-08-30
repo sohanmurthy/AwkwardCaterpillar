@@ -1,6 +1,7 @@
 AWKWARD CATERPILLAR
 ==========
 *Sohan Murthy & Carrie Phillips*
+<br>
 *2018*
 
 AWKWARD CATERPILLAR is an LED art installation located in a private residence in San Francisco. This program controls hundreds of individually addressable LEDs, balancing artistic expression and functional interior lighting.
