@@ -19,25 +19,6 @@ class BoringLight extends LXPattern {
 }
 
 
-/***************************************
-
-PIXEL TESTER
-
-****************************************/
-
-class GetPixel extends LXPattern {
-  
-    GetPixel(LX lx) {
-    super(lx);
-  }
-  
-  public void run(double deltaMs) {
-      addColor(227, LXColor.hsb(0, 0, 100));
-  }
-   
-}
-
-
 
 /***************************************
 
@@ -101,11 +82,11 @@ class Interference extends LXPattern {
 
 /***************************************
 
-ColorSwatches
+TURRELLIAN
 
 ****************************************/
 
-class ColorSwatches extends LXPattern{
+class Turrellian extends LXPattern {
 
   class Swatch extends LXLayer {
 
@@ -136,7 +117,6 @@ class ColorSwatches extends LXPattern{
       for(int i = sPixel; i < fPixel; i++){
         blendColor(i, LXColor.hsb(
           lx.getBaseHuef() + hueValue.getValuef() + hOffset,
-          //lx.getBaseHuef() + hOffset,
           s,
           b
           ), LXColor.Blend.LIGHTEST);
@@ -145,17 +125,19 @@ class ColorSwatches extends LXPattern{
 
   }
 
-  ColorSwatches(LX lx, int num_sec){
+  Turrellian(LX lx){
    super(lx);
-   //size of each swatch in pixels
-    final int section = num_sec;
-   for(int s = 0; s <= model.size-section; s+=section){
-     if((s+section) % (section*2) == 0){
-     addLayer(new Swatch(lx, s, s+section, 55));
-     }else{
-       addLayer(new Swatch(lx, s, s+section, 0));
-     }  
-   }
+   //North wall
+   addLayer(new Swatch(lx, 0, 112, 125));
+   
+   //East wall
+   addLayer(new Swatch(lx, 112, 112+116, 0));
+   
+   //West wall
+   addLayer(new Swatch(lx, 228, 228+115, 0));
+   
+   //South wall (bay window)
+   addLayer(new Swatch(lx, 343, 343+136, 125));
   }
 
   public void run(double deltaMs) {
@@ -230,4 +212,79 @@ class Stars extends LXPattern {
       }
     }
   }
+}
+
+
+/***************************************
+
+WAVES
+
+****************************************/
+
+class Waves extends LXPattern {
+  
+  
+  private final BasicParameter xPos = new BasicParameter("X", model.cx, 0, model.xMax);
+  private final BasicParameter yPos = new BasicParameter("Y", model.cy, 0, model.yMax);
+ 
+  private final SinLFO sync = new SinLFO(13*SECONDS,21*SECONDS, 34*SECONDS);
+  private final SinLFO speed = new SinLFO(7500*0.7, 9500*0.7, sync);
+  private final SinLFO tight = new SinLFO(10, 15, sync); 
+ 
+  //private final SinLFO speed = new SinLFO(7500*0.7, 9500*0.7, 16000);
+  private final SawLFO move = new SawLFO(TWO_PI, 0, speed);
+  //private final SinLFO tight = new SinLFO(10, 20, 18000);
+  private final SinLFO hr = new SinLFO(90, 300, 25000);
+  
+  
+  Waves(LX lx) {
+    super(lx);
+    
+    addParameter(xPos);
+    addParameter(yPos);
+    
+    addModulator(hr).start();
+    addModulator(tight).start();
+    addModulator(speed).start();
+    addModulator(move).start();
+
+  }
+  
+  public void run(double deltaMs) {
+    for (LXPoint p : model.points) {
+     
+      float dx = ((abs(p.x - xPos.getValuef())) / model.xRange) + ((abs(p.y - yPos.getValuef())) / model.yRange);
+      float b = 50 + 50 * sin(dx * tight.getValuef() + move.getValuef());
+      
+      colors[p.index] = palette.getColor(p, b);
+    }
+  }
+  
+  
+}
+
+
+
+/***************************************
+
+PIXEL TESTER
+
+****************************************/
+
+class GetPixel extends LXPattern {
+  
+  private final DiscreteParameter pixelSelector = new DiscreteParameter("Pix", 0, 0, model.size);
+  
+    GetPixel(LX lx) {
+    super(lx);
+    addParameter(pixelSelector);
+  }
+  
+  public void run(double deltaMs) {
+      setColors(#000000);
+      addColor(pixelSelector.getValuei(), LXColor.hsb(0, 0, 100));
+  }
+  
+
+   
 }
