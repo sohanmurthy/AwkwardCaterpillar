@@ -70,7 +70,7 @@ static class East extends LXModel {
     private static final int Z_SPACING = 1;
 
     private static final float X_POS = 1.34;
-    private static final float Z_POS = (X_SPACING*SIZE_X);
+    private static final float Z_POS = (X_SPACING*112);
 
     East(){
      super(new Fixture());
@@ -158,8 +158,8 @@ static class South extends LXModel {
     private static final float X_SPACING = 1;
     private static final float Z_SPACING = 1.34;
 
-    private static final float X_POS = (Z_SPACING*(SIZE_Z+1));
-    private static final float Z_POS = 0;
+    private static final float X_POS = (Z_SPACING*(135));
+    private static final float Z_POS = -12*Z_SPACING;
 
     South(){
      super(new Fixture());
