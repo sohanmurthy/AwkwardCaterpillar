@@ -224,8 +224,8 @@ WAVES
 class Waves extends LXPattern {
   
   
-  private final BasicParameter xPos = new BasicParameter("X", model.cx, 0, model.xMax);
-  private final BasicParameter yPos = new BasicParameter("Y", model.cy, 0, model.yMax);
+  private final BasicParameter xPos = new BasicParameter("X", model.cx, model.xMin, model.xMax);
+  private final BasicParameter yPos = new BasicParameter("Y", model.cy, model.yMin, model.yMax);
  
   private final SinLFO sync = new SinLFO(13*SECONDS,21*SECONDS, 34*SECONDS);
   private final SinLFO speed = new SinLFO(7500*0.7, 9500*0.7, sync);
