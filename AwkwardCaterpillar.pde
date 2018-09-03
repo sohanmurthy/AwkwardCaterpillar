@@ -51,8 +51,10 @@ void setup() {
     
     new BoringLight(lx),
     new Interference(lx),
-    new Turrellian(lx),
     new Waves(lx),
+    new Pulsar(lx),
+    new Headspace(lx),
+    new Turrellian(lx),
     new Stars(lx)
     
   };
