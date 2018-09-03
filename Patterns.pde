@@ -150,6 +150,65 @@ class Turrellian extends LXPattern {
 
 /***************************************
 
+HEADSPACE
+
+****************************************/
+
+class Headspace extends LXPattern {
+
+  class Swatch extends LXLayer {
+
+    private final SinLFO sync = new SinLFO(10*SECONDS, 13*SECONDS, 39*SECONDS);
+    private final SinLFO bright = new SinLFO(0,100, sync);
+    private final SinLFO sat = new SinLFO(35,55, sync);
+    private final TriangleLFO hueValue = new TriangleLFO(0, 26, sync);
+
+    private int sPixel;
+    private int fPixel;
+    private float hOffset;
+
+    Swatch(LX lx, int s, int f, float o){
+      super(lx);
+      sPixel = s;
+      fPixel = f;
+      hOffset = o;
+      addModulator(sync.randomBasis()).start();
+      addModulator(bright.randomBasis()).start();
+      addModulator(sat.randomBasis()).start();
+      addModulator(hueValue.randomBasis()).start();
+    }
+
+    public void run(double deltaMs) {
+      float s = sat.getValuef();
+      float b = constrain(bright.getValuef(), 0, 100);
+
+      for(int i = sPixel; i < fPixel; i++){
+        blendColor(i, LXColor.hsb(
+          lx.getBaseHuef() + hueValue.getValuef() + hOffset,
+          s,
+          b
+          ), LXColor.Blend.LIGHTEST);
+        }
+    }
+
+  }
+
+  Headspace(LX lx){
+   super(lx);
+   //All walls
+   addLayer(new Swatch(lx, 0, 479, 125));
+  }
+
+  public void run(double deltaMs) {
+    setColors(#000000);
+    lx.cycleBaseHue(3.37*MINUTES);
+  }
+
+}
+
+
+/***************************************
+
 STARS
 
 ****************************************/
@@ -264,6 +323,85 @@ class Waves extends LXPattern {
 }
 
 
+/***************************************
+
+PULSAR
+
+****************************************/
+
+
+abstract class Droplets extends LXPattern {
+  
+  class Droplet extends LXLayer {
+    
+    private final Accelerator xPos = new Accelerator(0, 0, 0);
+    private final Accelerator yPos = new Accelerator(0, 0, 0);
+    private final Accelerator radius = new Accelerator(0, 0, 0);
+    
+    Droplet(LX lx) {
+      super(lx);
+      startModulator(xPos);
+      startModulator(yPos);
+      startModulator(radius);
+      init();
+      radius.setValue(random(0, model.xRange));
+    }
+    
+    public void run(double deltaMs) {
+      boolean touched = false;
+      float falloff = falloff();
+      for (LXPoint p : model.points) {
+        float d = distance(p, xPos.getValuef(), yPos.getValuef(), radius.getValuef());
+        float b = 100 - falloff*d;
+        if (b > 0) {
+          touched = true;
+          addColor(p.index, palette.getColor(p, b));
+        }
+      }
+      if (!touched) {
+        init();
+      }
+    }
+  
+    private void init() {
+      xPos.setValue(random(model.cx, model.xMax+5));
+      xPos.setVelocity(random(-2*FEET, 2*FEET));
+      yPos.setValue(model.cy);
+      yPos.setVelocity(random(-2*FEET, 2*FEET));
+      radius.setAcceleration(random(5, 15)).setVelocity(0).setValue(0);
+    }
+  }
+  
+  Droplets(LX lx) {
+    super(lx);
+    for (int i = 0; i < 4; ++i) {
+      addLayer(new Droplet(lx));
+    }
+  }
+ 
+  public void run(double deltaMs) {
+    setColors(#000000);
+  }
+  
+  abstract protected float distance(LXPoint p, float x, float y, float r);
+  
+  protected float falloff() {
+    return 5;
+  }
+    
+}
+
+class Pulsar extends Droplets {
+  Pulsar(LX lx) {
+    super(lx);
+  }
+  
+  protected float distance(LXPoint p, float x, float y, float r) {
+    return abs(r - dist(p.x, p.y, x, y));
+  }
+}
+
+
 
 /***************************************
 
@@ -284,7 +422,5 @@ class GetPixel extends LXPattern {
       setColors(#000000);
       addColor(pixelSelector.getValuei(), LXColor.hsb(0, 0, 100));
   }
-  
 
-   
 }
