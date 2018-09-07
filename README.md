@@ -14,7 +14,8 @@ The system consists of a Raspberry Pi 3, [FadeCandy controller](https://www.adaf
 
 1. Download and install [Processing 3](https://processing.org/download/?processing)
 2. Install [Fadecandy server](https://github.com/scanlime/fadecandy)
-4. Install [TouchOSC Editor](https://hexler.net/software/touchosc) and load the provided layout to your mobile device.
 3. Clone this repo into your Processing sketchbook folder
+4. Install [TouchOSC Editor](https://hexler.net/software/touchosc) and load the provided layout to your mobile device.
+
 
 Special thanks to [Mark Slee](https://github.com/mcslee/) & [Heron Arts](https://github.com/heronarts/) for developing [LX Studio](http://lx.studio) and the [P3LX library]((https://github.com/heronarts/P3LX)), which powers AWKWARD CATERPILLAR.
